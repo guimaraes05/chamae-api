@@ -16,6 +16,10 @@ import br.com.chamae.gameEvent.models.GameEvent;
 import br.com.chamae.gameEvent.servicesImpl.GameEventServiceImpl;
 
 import javax.validation.Valid;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -25,6 +29,11 @@ public class GameEventController {
 	@Autowired
 	private GameEventServiceImpl service;
 
+	@GetMapping(value = "/teste")
+	public String testeLogin() {
+		return "teste";
+	}
+	
 	@GetMapping(value = "/all")
 	public List<GameEvent> getAllGameEvents() {
 		List<GameEvent> response = service.getAllGameEvents();
