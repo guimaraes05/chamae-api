@@ -1,7 +1,12 @@
 package br.com.chamae.gameEvent.controllers;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,31 +14,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.chamae.gameEvent.models.GameEvent;
-import br.com.chamae.gameEvent.servicesImpl.GameEventServiceImpl;
-
-import javax.validation.Valid;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import br.com.chamae.gameEvent.services.DefaultUserDetailsService;
+import br.com.chamae.gameEvent.services.GameEventService;
 
 @RestController
 @RequestMapping("/api/game-event")
 public class GameEventController {
 	
 	@Autowired
-	private GameEventServiceImpl service;
-
-	@GetMapping(value = "/teste")
-	public String testeLogin() {
-		return "teste";
-	}
+	private GameEventService service;
 	
+	@Autowired
+	private DefaultUserDetailsService userService;
+
 	@GetMapping(value = "/all")
 	public List<GameEvent> getAllGameEvents() {
 		List<GameEvent> response = service.getAllGameEvents();

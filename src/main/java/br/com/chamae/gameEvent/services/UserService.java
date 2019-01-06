@@ -1,5 +1,7 @@
 package br.com.chamae.gameEvent.services;
 
-public interface UserService {
+import br.com.chamae.gameEvent.models.User;
 
+public interface UserService {
+	User createUser(User user);
 }

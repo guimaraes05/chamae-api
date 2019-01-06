@@ -3,55 +3,42 @@ package br.com.chamae.gameEvent.models;
 import java.util.List;
 
 import javax.validation.constraints.Size;
+
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 public class User {
-
+  
   @Id
-  private Integer id;
+  private ObjectId _id;
   private String username;
-  private String email;
   private String password;
-  List<Role> roles;
-
-  public Integer getId() {
-    return id;
+  
+  public ObjectId get_id() {
+ 	return _id;
+  } 
+  
+  public void set_id(ObjectId _id) {
+	this._id = _id;
   }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
+  
   public String getUsername() {
-    return username;
+	return username;
   }
-
+  
   public void setUsername(String username) {
-    this.username = username;
+	this.username = username;
   }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
+  
   public String getPassword() {
-    return password;
+	return password;
   }
-
+  
   public void setPassword(String password) {
-    this.password = password;
-  }
+	this.password = password;
+  } 
+  
+  
 
-  public List<Role> getRoles() {
-    return roles;
-  }
-
-  public void setRoles(List<Role> roles) {
-    this.roles = roles;
-  }
 
 }
