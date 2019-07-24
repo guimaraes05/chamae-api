@@ -5,21 +5,20 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.chamae.gameEvent.models.User;
 import br.com.chamae.gameEvent.requests.AuthRequest;
-import br.com.chamae.gameEvent.services.UserService;
+import br.com.chamae.gameEvent.responses.AuthResponse;
+import br.com.chamae.gameEvent.services.AuthService;
 
 @RestController
-public class UserController {
+public class AuthController {
 	
 	@Autowired
-	private UserService service;
+	private AuthService authService;
 	
-	@PostMapping(value = "/user")
-	public User createUser(@Valid @RequestBody User user) {
-		return service.createUser(user);
+	@PostMapping(value = "/login")
+	public AuthResponse login(@Valid @RequestBody AuthRequest request) {
+		return authService.login(request);
 	}
 }
