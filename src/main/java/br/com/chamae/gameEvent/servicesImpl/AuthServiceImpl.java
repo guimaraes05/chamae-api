@@ -4,6 +4,7 @@ import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -25,7 +26,10 @@ public class AuthServiceImpl implements AuthService{
 	
 	private static final String CHAMAE_CLIENT_ID = "chamae-client";
 	
-	private static final String DB_URL = "http://localhost:8080/oauth/token";
+//	private static final String DB_URL = "http://localhost:8080/oauth/token";
+	
+	@Value("${teste.url}")
+	private String DB_URL;
 	
 	@Autowired
     @Qualifier("login-client-rest-template")
@@ -48,7 +52,7 @@ public class AuthServiceImpl implements AuthService{
         HttpEntity<?> entity = new HttpEntity<>(params, headers);
 		
 		try {
-			ResponseEntity<OAuth2AccessToken> exchange = restTemplate.exchange(DB_URL, HttpMethod.POST, entity, OAuth2AccessToken.class);
+			ResponseEntity<OAuth2AccessToken> exchange = restTemplate.exchange(DB_URL + "/oauth/token", HttpMethod.POST, entity, OAuth2AccessToken.class);
 			final String tokenValue = exchange.getBody().getValue();
 			return new AuthResponse(tokenValue);
 		} catch (Exception e) {
