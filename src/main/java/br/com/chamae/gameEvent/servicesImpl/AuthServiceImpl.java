@@ -32,7 +32,7 @@ public class AuthServiceImpl implements AuthService{
     private RestTemplate restTemplate;
 	
 	@Override
-	public AuthResponse login(AuthRequest request) {
+	public AuthResponse login(AuthRequest request) throws Exception {
 		final String user = request.getUser();
 		final String password = request.getPassword();
 		
@@ -52,7 +52,7 @@ public class AuthServiceImpl implements AuthService{
 			final String tokenValue = exchange.getBody().getValue();
 			return new AuthResponse(tokenValue);
 		} catch (Exception e) {
-			throw new InvalidGrantException("BAD CREDENTIALS");
+			throw new Exception(e);
 		}
 		
 	}

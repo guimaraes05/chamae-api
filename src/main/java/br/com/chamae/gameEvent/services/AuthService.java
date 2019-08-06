@@ -4,5 +4,5 @@ import br.com.chamae.gameEvent.requests.AuthRequest;
 import br.com.chamae.gameEvent.responses.AuthResponse;
 
 public interface AuthService {
-	AuthResponse login(AuthRequest request);
+	AuthResponse login(AuthRequest request) throws Exception;
 }

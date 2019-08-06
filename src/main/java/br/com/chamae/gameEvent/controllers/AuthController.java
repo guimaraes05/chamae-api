@@ -18,7 +18,7 @@ public class AuthController {
 	private AuthService authService;
 	
 	@PostMapping(value = "/login")
-	public AuthResponse login(@Valid @RequestBody AuthRequest request) {
+	public AuthResponse login(@Valid @RequestBody AuthRequest request) throws Exception {
 		return authService.login(request);
 	}
 }
